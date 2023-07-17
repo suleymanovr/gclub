@@ -1,0 +1,44 @@
+[
+ {
+  "directory": "/home/whounix/tests/job_interviews/YADRO/test_task",
+  "arguments": [
+   "g++",
+   "-I./include",
+   "-MMD",
+   "-MP",
+   "-c",
+   "src/main.cpp",
+   "-o",
+   "build/./src/main.cpp.o"
+  ],
+  "file": "src/main.cpp"
+ },
+ {
+  "directory": "/home/whounix/tests/job_interviews/YADRO/test_task",
+  "arguments": [
+   "g++",
+   "-I./include",
+   "-MMD",
+   "-MP",
+   "-c",
+   "src/gclub_model.cpp",
+   "-o",
+   "build/./src/gclub_model.cpp.o"
+  ],
+  "file": "src/gclub_model.cpp"
+ },
+ {
+  "directory": "/home/whounix/tests/job_interviews/YADRO/test_task",
+  "arguments": [
+   "g++",
+   "-I./include",
+   "-MMD",
+   "-MP",
+   "-c",
+   "src/t_file_parser.cpp",
+   "-o",
+   "build/./src/t_file_parser.cpp.o"
+  ],
+  "file": "src/t_file_parser.cpp"
+ }
+]
