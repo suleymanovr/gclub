@@ -268,7 +268,7 @@ int parse_test_file(char *fname, struct gclub::input_params &test_data) {
           return 2;
         }
       }
-      reftime.copy_time_from(new_event.get_time());
+      reftime = new_event.get_time();
       test_data.event_list.push_front(new_event);
       lnum++;
     }

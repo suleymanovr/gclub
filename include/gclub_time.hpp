@@ -10,17 +10,17 @@ private:
   uint8_t mm;
 
 public:
-  time_hh_mm(uint8_t hh_val = 0, uint8_t mm_val = 0)
+  explicit time_hh_mm(uint8_t hh_val = 0, uint8_t mm_val = 0)
       : hh(hh_val % 24), mm(mm_val % 60) {}
 
-  void copy_time_to(time_hh_mm &copy_to) {
-    copy_to.hh = hh;
-    copy_to.mm = mm;
+  time_hh_mm(const time_hh_mm &val) {
+    hh = val.hh;
+    mm = val.mm;
   }
-
-  void copy_time_from(const time_hh_mm &copy_from) {
-    hh = copy_from.hh;
-    mm = copy_from.mm;
+  time_hh_mm &operator=(const time_hh_mm &val) {
+    hh = val.hh;
+    mm = val.mm;
+    return *this;
   }
 
   void set_time(uint8_t hh_val, uint8_t mm_val) {

@@ -16,7 +16,7 @@ public:
   }
 
   void set_id(uint8_t val) { id = val; }
-  void set_time(const time_hh_mm &from) { time.copy_time_from(from); }
+  void set_time(const time_hh_mm &from) { time = from; }
   void set_body(std::string nbody) { body.assign(nbody); }
 
   uint8_t get_id() { return id; }

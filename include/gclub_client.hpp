@@ -5,7 +5,9 @@
 #include "gclub_time.hpp"
 
 namespace gclub {
+
 enum client_status { NOT_LANDED, LANDED, WAITING };
+
 class client {
 private:
   std::string name;
@@ -32,8 +34,6 @@ public:
   std::string get_string_session_start() {
     return session_start.get_string_time();
   }
-  void set_session_start(time_hh_mm &time) {
-    session_start.copy_time_from(time);
-  }
+  void set_session_start(time_hh_mm &time) { session_start = time; }
 };
 }; // namespace gclub
