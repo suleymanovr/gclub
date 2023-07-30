@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
   gclub::event new_event;
   gclub::time_hh_mm time;
 
-  std::cout << test_args.opens_at.get_string_time() << std::endl;
+  std::cout << test_args.opens_at.string() << std::endl;
   while (!test_args.event_list.empty()) {
     new_event = test_args.event_list.back();
     gclub::handle_event(new_event, admin);

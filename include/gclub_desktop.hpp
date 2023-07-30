@@ -33,7 +33,7 @@ public:
 
   time_hh_mm get_total_busy_tm() { return total_busy_tm; }
   std::string get_string_total_busy_tm() {
-    return total_busy_tm.get_string_time();
+    return total_busy_tm.string();
   }
 
   void append_total_busy_tm(uint8_t hh_val, uint8_t mm_val) {

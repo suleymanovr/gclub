@@ -32,7 +32,7 @@ public:
 
   time_hh_mm get_session_start() { return session_start; }
   std::string get_string_session_start() {
-    return session_start.get_string_time();
+    return session_start.string();
   }
   void set_session_start(time_hh_mm &time) { session_start = time; }
 };

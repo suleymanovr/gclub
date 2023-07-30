@@ -96,7 +96,7 @@ bool parse_event_line(string &line, uint64_t lnum, gclub::event &new_event,
     return false;
   }
 
-  time.set_from_string(word);
+  time.set(word);
   if (time.get_time_in_mm() <= prev_event_time.get_time_in_mm()) {
     perror_in_line(line, lnum,
                    "Wrong time. Must be greater than previous event time!");
@@ -221,9 +221,9 @@ int parse_test_file(char *fname, struct gclub::input_params &test_data) {
         return 2;
       } else {
         if (i == 0) {
-          test_data.opens_at.set_from_string(word);
+          test_data.opens_at.set(word);
         } else {
-          test_data.closes_at.set_from_string(word);
+          test_data.closes_at.set(word);
         }
       }
     }

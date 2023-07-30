@@ -73,7 +73,7 @@ public:
       ptr = get_dskp(id);
       total = ptr->get_total_busy_tm();
       std::cout << ptr->get_id() << ' ' << ptr->get_daily_rev() << ' '
-                << total.get_string_time() << std::endl;
+                << total.string() << std::endl;
     }
   }
 

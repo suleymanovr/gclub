@@ -18,8 +18,6 @@ inline void gclub::split_body(const string &body, string &name,
 
 void gclub::ev12_client_landed(time_hh_mm &curr_time, client &land_client,
                                uint32_t deskp_id, admin &adm) {
-  string str_time{curr_time.get_string_time()};
-
   land_client.assign_dskp(deskp_id);
   land_client.set_session_start(curr_time);
   land_client.set_status(client_status::LANDED);
@@ -29,7 +27,7 @@ void gclub::ev12_client_landed(time_hh_mm &curr_time, client &land_client,
   string body{land_client.get_name()};
   body.append(" ");
   body.append(to_string(deskp_id));
-  print_event(str_time, 12, body);
+  print_event(curr_time.string(), 12, body);
 }
 
 void gclub::ev11_client_leave(const string &time, const string &client_name) {
@@ -43,7 +41,7 @@ void gclub::ev13_error(const string &time, const string &error) {
 void gclub::ev4_client_leave(event &ev, admin &adm) {
   time_hh_mm curr_time = ev.get_time();
   string client_name{ev.get_body()};
-  string str_time{curr_time.get_string_time()};
+  string str_time{curr_time.string()};
   client client;
   uint32_t dskp_id;
 
@@ -79,7 +77,7 @@ void gclub::ev4_client_leave(event &ev, admin &adm) {
 void gclub::ev3_client_wait(event &ev, admin &adm) {
   time_hh_mm curr_time = ev.get_time();
   string client_name{ev.get_body()};
-  string str_time{curr_time.get_string_time()};
+  string str_time{curr_time.string()};
   client client_wait;
 
   client_wait.set_name(client_name);
@@ -118,7 +116,7 @@ void gclub::ev3_client_wait(event &ev, admin &adm) {
 void gclub::ev2_client_landed(event &ev, admin &adm) {
   time_hh_mm curr_time = ev.get_time();
   string body{ev.get_body()};
-  string str_time{curr_time.get_string_time()};
+  string str_time{curr_time.string()};
   string client_name;
   client land_client;
   uint32_t new_deskp_id, old_deskp_id;
@@ -162,7 +160,7 @@ void gclub::ev1_client_came(event &ev, admin &adm) {
   time_hh_mm start = adm.get_open_hrs();
   time_hh_mm fin = adm.get_close_hrs();
   time_hh_mm curr_time = ev.get_time();
-  string str_time{curr_time.get_string_time()};
+  string str_time{curr_time.string()};
   string client_name{ev.get_body()};
   client new_client;
 
@@ -207,7 +205,7 @@ void gclub::end_of_the_day(admin &adm) {
   map<string, client> ordered_list;
   time_hh_mm curr_time = adm.get_close_hrs();
   time_hh_mm session_start;
-  string str_time{curr_time.get_string_time()};
+  string str_time{curr_time.string()};
   uint32_t dskp_id;
 
   if (!adm.client_list_isempty()) {
@@ -229,7 +227,7 @@ void gclub::end_of_the_day(admin &adm) {
 }
 
 /// time_hh_mm class methods
-std::string gclub::time_hh_mm::get_string_time() {
+std::string gclub::time_hh_mm::string() const {
   std::string time;
   if (hh < 10) {
     time.assign("0");
@@ -247,7 +245,7 @@ std::string gclub::time_hh_mm::get_string_time() {
   return time;
 }
 
-void gclub::time_hh_mm::set_from_string(std::string time) {
+void gclub::time_hh_mm::set(const std::string time) {
   if (time[0] == '0') {
     hh = std::stoul(time.substr(1, 1), nullptr, 10);
   } else {
@@ -260,7 +258,7 @@ void gclub::time_hh_mm::set_from_string(std::string time) {
   }
 }
 
-gclub::time_hh_mm gclub::time_hh_mm::operator-(const time_hh_mm &start) {
+gclub::time_hh_mm gclub::time_hh_mm::operator-(const time_hh_mm start) {
   time_hh_mm delta{};
   bool mless = false;
 
