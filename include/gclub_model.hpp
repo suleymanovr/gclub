@@ -15,6 +15,11 @@ struct input_params {
   time_hh_mm opens_at;
   time_hh_mm closes_at;
   std::list<event> event_list;
+
+  input_params() {
+	max_desktops = 0;
+	cost_per_h 	 = 0;
+  };
 };
 
 inline void print_event(const std::string &time, const unsigned &id,

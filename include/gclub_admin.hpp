@@ -59,7 +59,7 @@ public:
 
   void record_dskp(uint32_t id, time_hh_mm &curr_time,
                    time_hh_mm &client_session_start) {
-    time_hh_mm delta = curr_time.get_delta(client_session_start);
+    time_hh_mm delta(curr_time - client_session_start);
 
     desktop *dskp_ptr = get_dskp(id);
     dskp_ptr->append_total_busy_tm(delta.get_hh(), delta.get_mm());

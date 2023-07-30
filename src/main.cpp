@@ -4,9 +4,8 @@
 #include "t_file_parser.hpp"
 
 int main(int argc, char *argv[]) {
-  struct gclub::input_params test_args {
-    0
-  };
+  struct gclub::input_params test_args;
+
   if (parse_test_file(argv[1], test_args)) {
     return 1;
   }

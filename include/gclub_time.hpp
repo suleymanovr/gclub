@@ -17,12 +17,13 @@ public:
     hh = val.hh;
     mm = val.mm;
   }
-  time_hh_mm &operator=(const time_hh_mm &val) {
+  time_hh_mm& operator=(const time_hh_mm &val) {
     hh = val.hh;
     mm = val.mm;
     return *this;
   }
-
+  time_hh_mm operator-(const time_hh_mm &start);
+  
   void set_time(uint8_t hh_val, uint8_t mm_val) {
     hh = hh_val % 24;
     mm = mm_val % 60;
@@ -37,7 +38,6 @@ public:
   uint8_t get_hh() { return hh; }
   uint8_t get_mm() { return mm; }
 
-  time_hh_mm get_delta(const time_hh_mm &start);
   std::string get_string_time();
   void set_from_string(std::string time);
 };

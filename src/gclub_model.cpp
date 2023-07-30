@@ -260,7 +260,7 @@ void gclub::time_hh_mm::set_from_string(std::string time) {
   }
 }
 
-gclub::time_hh_mm gclub::time_hh_mm::get_delta(const time_hh_mm &start) {
+gclub::time_hh_mm gclub::time_hh_mm::operator-(const time_hh_mm &start) {
   time_hh_mm delta{};
   bool mless = false;
 
@@ -286,6 +286,7 @@ gclub::time_hh_mm gclub::time_hh_mm::get_delta(const time_hh_mm &start) {
   } else if (mless) {
     delta.hh -= 1;
   }
+
   return delta;
 }
 /// end time_hh_mm class methods
