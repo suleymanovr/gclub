@@ -13,32 +13,43 @@ public:
   explicit time_hh_mm(uint8_t hh_val = 0, uint8_t mm_val = 0)
       : hh(hh_val % 24), mm(mm_val % 60) {}
 
-  time_hh_mm(const time_hh_mm &val) {
+  time_hh_mm(const time_hh_mm &val) noexcept {
     hh = val.hh;
     mm = val.mm;
   }
-  time_hh_mm &operator=(const time_hh_mm &val) {
+  time_hh_mm &operator=(const time_hh_mm &val) noexcept {
     hh = val.hh;
     mm = val.mm;
     return *this;
   }
   time_hh_mm operator-(const time_hh_mm start);
 
-  void set(uint8_t hh_val, uint8_t mm_val) {
+  void set(uint8_t hh_val, uint8_t mm_val) noexcept {
     hh = hh_val % 24;
     mm = mm_val % 60;
   }
   void set(const std::string time);
 
   void append_time(uint8_t hh_val, uint8_t mm_val) {
-    hh = (hh + hh_val) % 24;
+  	if (mm + mm_val >= 60) {
+		if (hh + 1 >= 24) {
+			throw("Rock around the clock!");
+  		}
+		++hh;
+  	}
     mm = (mm + mm_val) % 60;
+	if (hh + hh_val >= 24) {
+		throw("Rock around the clock!");
+  	}
+    hh = (hh + hh_val) % 24;
   }
 
   std::string string() const;
-  uint16_t get_time_in_mm() const { return hh * 60 + mm; }
-  uint8_t get_time_in_hh() const { return mm > 0 ? hh + 1 : hh; }
-  uint8_t get_hh() const { return hh; }
-  uint8_t get_mm() const { return mm; }
+  auto get_time_in_mm() const noexcept {
+    return static_cast<uint16_t>(hh) * 60 + mm;
+  }
+  uint8_t get_time_in_hh() const noexcept { return mm > 0 ? hh + 1 : hh; }
+  uint8_t get_hh() const noexcept { return hh; }
+  uint8_t get_mm() const noexcept { return mm; }
 };
 }; // namespace gclub
